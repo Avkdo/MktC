@@ -2,8 +2,8 @@ name: Warm Shares Outstanding
 
 on:
   schedule:
-    - cron: '0 6 * * 6'
-  workflow_dispatch: {}
+    - cron: 0 6 * * 6
+  workflow_dispatch:
 
 jobs:
   fetch-and-push:
@@ -11,11 +11,9 @@ jobs:
     timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
+          node-version: 20
       - name: Fetch shares outstanding and push to Worker
         env:
           POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
